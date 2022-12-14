@@ -263,7 +263,7 @@ void rgb_to_float_gray(const cv::Mat& original_image, cv::Mat& gray_image_float)
 
     // The roi image has to be converted in RGB for further processing
     cv::Mat gray_image;
-    cv::cvtColor(original_image, gray_image, CV_RGB2GRAY);
+    cv::cvtColor(original_image, gray_image, cv::COLOR_RGB2GRAY);
 
     // Convert the image into float
     gray_image.convertTo(gray_image_float, CV_32F);
