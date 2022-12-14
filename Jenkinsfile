@@ -2,9 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage ('checkout code'){
-            steps{checkout scm}
-        }
         stage('Generate CMake files') {
             steps{
                 dir('./src') {sh 'mkdir build'}
