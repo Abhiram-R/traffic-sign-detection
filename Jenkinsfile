@@ -4,12 +4,13 @@ pipeline {
     stages {
         stage('Generate CMake files') {
             steps{
-                dir('./src') {sh 'mkdir build'}
-                dir('./build') {sh 'cmake ..'}
+                dir('./src') {sh 'mkdir build'
+                    dir('./build') {sh 'cmake ..'}
+                }
             }
         }
         stage('Build the code') {
-            steps{sh 'make'}
+            steps{dir('./src/build') {sh 'make'}}
         }
         stage('Notification') {
             steps{echo "Code has been built"}
