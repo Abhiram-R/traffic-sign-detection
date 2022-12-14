@@ -60,15 +60,15 @@ void filter_image(const cv::Mat& seg_image, cv::Mat& bin_image) {
     // Apply the dilation
     cv::dilate(bin_image, bin_image, struct_elt);
     // Threshold the image
-    cv::threshold(bin_image, bin_image, 254, 255, CV_THRESH_BINARY);
+    cv::threshold(bin_image, bin_image, 254, 255, cv::THRESH_BINARY);
 
     // Find the contours of the objects
     std::vector< std::vector< cv::Point > > contours;
     std::vector< cv::Vec4i > hierarchy;
-    cv::findContours(bin_image, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+    cv::findContours(bin_image, contours, hierarchy, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
     // Filled the objects
     cv::Scalar color(255, 255, 255);
-    cv::drawContours(bin_image, contours, -1, color, CV_FILLED, 8);
+    cv::drawContours(bin_image, contours, -1, color, cv::FILLED, 8);
 
     // Apply some erosion on the destination image
     cv::erode(bin_image, bin_image, struct_elt);
@@ -178,7 +178,7 @@ void contours_extraction(const cv::Mat& bin_image, std::vector< std::vector< cv:
     std::vector< cv::Vec4i > hierarchy;
 
     // Extract the raw contours
-    cv::findContours(bin_image, contours, hierarchy, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+    cv::findContours(bin_image, contours, hierarchy, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_NONE);
 
     // Need to remove some of the contours based on aspect ratio inconsistancy
     // DO NOT FORGET THAT THERE IS SOME PARAMETERS REGARDING THE ASPECT RATIO
