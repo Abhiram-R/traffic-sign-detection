@@ -3,17 +3,17 @@ pipeline {
 
     stages {
         stage('checkout Github code') {
-            checkout scm
+            steps{checkout scm}
         }
         stage('Generate CMake files') {
-            sh 'mkdir build && cd build'
-            sh 'cmake ..'
+            steps{sh 'mkdir build && cd build'
+                  sh 'cmake ..'}
         }
         stage('Build the code') {
-            sh 'make'
+            steps{sh 'make'}
         }
         stage('Notification') {
-            echo "Code has been built"
+            steps{echo "Code has been built"}
         }
     }
 }
