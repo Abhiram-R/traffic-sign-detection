@@ -276,16 +276,17 @@ int main(int argc, char *argv[]) {
     end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
     std::time_t end_time = std::chrono::system_clock::to_time_t(end);
-
-    std::cout << "Finished computation at " << std::ctime(&end_time)
-              << "Elapsed time: " << elapsed_seconds.count()*1000 << " ms\n";
+    if (normalised_contours.size() > 0) std::cout << "Number of traffic sign detection: " << normalised_contours.size() << "\n";
+    else std::cout << "No Traffic signs detected!\n";
+    /*std::cout << "Finished computation at " << std::ctime(&end_time)
+              << "Elapsed time: " << elapsed_seconds.count()*1000 << " ms\n";*/
 
 
     cv::Mat output_image = input_image.clone();
     cv::Scalar color(0,255,0);
     cv::drawContours(output_image, detected_signs, -1, color, 2, 8);
 
-    cv::namedWindow("Window", CV_WINDOW_AUTOSIZE);
+    cv::namedWindow("Window", cv::WINDOW_AUTOSIZE);
     cv::imshow("Window", output_image);
     cv::waitKey(0);
 
