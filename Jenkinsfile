@@ -6,7 +6,7 @@ pipeline {
             steps{checkout scm}
         }
         stage('Generate CMake files') {
-            steps{sh 'mkdir build && cd build'
+            steps{sh 'cd src && mkdir build && cd build'
                   sh 'cmake ..'}
         }
         stage('Build the code') {
