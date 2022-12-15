@@ -5,7 +5,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 COPY . /usr/src/demoprg
 
-WORKDIR /usr/src/demoprg/src/bin
+WORKDIR /usr/src/
 
 RUN set -ex \
     && apt-get -qq update \
@@ -50,3 +50,5 @@ RUN set -ex \
     && cd build \
     && cmake .. \
     && make
+
+WORKDIR /usr/src/demoprg/src/bin
