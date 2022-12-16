@@ -2,15 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Generate CMake files') {
+        stage('Build Docker Image') {
             steps{
-                dir('./src') {sh "mkdir build-${BUILD_NUMBER}"
-                    dir("./build-${BUILD_NUMBER}") {sh 'cmake ..'}
-                }
+                sh 'docker build -t cpp-pipeline-example .'
             }
-        }
-        stage('Build the code') {
-            steps{dir("./src/build-${BUILD_NUMBER}") {sh 'make'}}
         }
         stage('Notification') {
             steps{echo "Code has been built"}
